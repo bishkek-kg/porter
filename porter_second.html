@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Портер Такси Кыргызстан - Надежная доставка по лучшим ценам</title>
+    <style>
+        :root {
+            --primary-color: #1E3A8A;
+            --accent-color: #10B981;
+            --light-gray: #F9FAFB;
+            --white: #FFFFFF;
+            --dark-gray: #4B5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Навигация */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .phone-numbers {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .phone-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #0EA271;
+        }
+
+        /* Герой-секция */
+        .hero {
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('backgroud.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Преимущества */
+        .benefits {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Услуги */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-image {
+            height: 200px;
+            background-color: #DDD;
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-title {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .service-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            margin-bottom: 20px;
+        }
+
+        /* Отзывы */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-gray);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                margin-top: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .phone-numbers {
+                margin-top: 20px;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+<!-- Шапка -->
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-truck"></i> Портер Такси
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#benefits">Преимущества</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <a onclick="window.open('https://wa.me/996777575707')" class="btn">Написать на Whatsapp</a>
+            <div class="phone-numbers">
+                <a href="tel:0777575707" class="phone-link"><i class="fas fa-phone"></i> 0777 57 57 07</a>
+                <a href="tel:0505999065" class="phone-link"><i class="fas fa-phone"></i> 0505 999 065</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Герой-секция -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Надежное Портер Такси в Кыргызстане</h1>
+            <p>Быстрая доставка, грузчики и вывоз мусора по лучшим ценам</p>
+            <a href="#contact" class="btn">Заказать услугу</a>
+        </div>
+    </div>
+</section>
+
+<!-- Преимущества -->
+<section class="benefits" id="benefits">
+    <div class="container">
+        <h2 class="section-title">Наши преимущества</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h3 class="benefit-title">Доступные цены</h3>
+                <p>Лучшие цены на услуги портер такси в Кыргызстане</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3 class="benefit-title">Быстрая доставка</h3>
+                <p>Оперативная доставка по городу и за его пределами</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="benefit-title">Профессиональные грузчики</h3>
+                <p>Аккуратная и безопасная работа с вашими вещами</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <h3 class="benefit-title">Экологичный вывоз мусора</h3>
+                <p>Правильная утилизация и экологическая забота</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Услуги -->
+<section class="services" id="services">
+    <div class="container">
+        <h2 class="section-title">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="1.jpg" alt="Портер такси" width="100%" height="100%">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Портер Такси</h3>
+                    <p class="service-price">500 сом</p>
+                    <p class="service-description">Быстрая доставка по городу и за его пределы. Перевозка мебели, техники и других грузов.</p>
+                    <a href="#contact" class="btn">Заказать</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="gruzchiki.jpg" alt="Грузчики" width="100%" height="100%">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Грузчики</h3>
+                    <p class="service-price">300 сом</p>
+                    <p class="service-description">Подъем на этаж, упаковка, аккуратная работа. Бережное обращение с вашими вещами.</p>
+                    <a href="#contact" class="btn">Заказать</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="4.jpg" alt="Вывоз мусора" width="100%" height="100%">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Вывоз мусора</h3>
+                    <p class="service-price">600 сом</p>
+                    <p class="service-description">Профессиональный вывоз и утилизация строительного мусора и других отходов.</p>
+                    <a href="#contact" class="btn">Заказать</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="main.png" alt="Вывоз снега" width="100%" height="100%">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Вывоз снега</h3>
+                    <p class="service-price">от 600 сом</p>
+                    <p class="service-description">Очистка территории от снега и его вывоз. Работаем оперативно в любую погоду.</p>
+                    <a href="#contact" class="btn">Заказать</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="sborka_mebeli.jpg" alt="Сборка мебели" width="100%" height="100%">
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Сборка мебели</h3>
+                    <p class="service-price">от 500 сом</p>
+                    <p class="service-description">Профессиональная сборка и установка мебели любой сложности.</p>
+                    <a href="#contact" class="btn">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Отзывы -->
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Что говорят клиенты</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Очень доволен услугами портер такси. Быстро приехали, аккуратно перевезли всю мебель при переезде. Рекомендую!"</p>
+                <p class="testimonial-author">- Азамат К.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Грузчики работали быстро и профессионально. Цена полностью соответствует качеству услуг."</p>
+                <p class="testimonial-author">- Айнура М.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Заказывал вывоз строительного мусора после ремонта. Все сделали оперативно и по доступной цене."</p>
+                <p class="testimonial-author">- Бакыт Д.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contact" style="padding: 80px 0; background-color: var(--white);">
+    <div class="container">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="font-size: 22px; margin-bottom: 20px; color: var(--primary-color);">Наши контакты</h3>
+                <div style="margin-bottom: 20px;">
+                    <p style="font-size: 18px; margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i> 0777 57 57 07</p>
+                    <p style="font-size: 18px; margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i> 0505 999 065</p>
+                    <p style="font-size: 18px; margin-bottom: 10px;"><i class="fas fa-map-marker-alt" style="color: var(--accent-color); margin-right: 10px;"></i> Кыргызстан</p>
+                </div>
+                <div style="margin-top: 30px;">
+                    <h4 style="margin-bottom: 15px;">Мы в мессенджерах:</h4>
+                    <div style="display: flex; gap: 15px;">
+                        <a onclick="window.open('https://wa.me/996777575707')" href="#" style="color: #25D366; font-size: 24px;"><i class="fab fa-whatsapp"> Написать на Whatsapp</i></a>
+                        <br>
+                        <a onclick="window.open('https://t.me/Pay24_RazakovE')" href="#" style="color: #0088cc; font-size: 24px;"><i class="fab fa-telegram"> Написать на Telegram</i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <form id="contactForm" style="background-color: var(--light-gray); padding: 30px; border-radius: 8px;">
+                    <div style="margin-bottom: 20px;">
+                        <label for="name" style="display: block; margin-bottom: 8px; font-weight: 600;">Имя</label>
+                        <input type="text" id="name" name="name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="phone" style="display: block; margin-bottom: 8px; font-weight: 600;">Телефон</label>
+                        <input type="tel" id="phone" name="phone" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="service" style="display: block; margin-bottom: 8px; font-weight: 600;">Услуга</label>
+                        <select id="service" name="service" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" required>
+                            <option value="">Выберите услугу</option>
+                            <option value="Портер Такси">Портер Такси</option>
+                            <option value="Грузчики">Грузчики</option>
+                            <option value="Вывоз мусора">Вывоз мусора</option>
+                            <option value="Вывоз снега">Вывоз снега</option>
+                            <option value="Сборка мебели">Сборка мебели</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 30px;">
+                        <label for="message" style="display: block; margin-bottom: 8px; font-weight: 600;">Сообщение</label>
+                        <textarea id="message" name="message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+                    <div id="formStatus" style="margin-top: 15px; text-align: center; display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Подвал -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Компания "Портер Такси" - ваш надежный партнер в грузоперевозках по Кыргызстану. Мы предлагаем лучшие цены и профессиональный сервис.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Услуги</h3>
+                <ul class="footer-links">
+                    <li><a href="#services">Портер Такси</a></li>
+                    <li><a href="#services">Грузчики</a></li>
+                    <li><a href="#services">Вывоз мусора</a></li>
+                    <li><a href="#services">Вывоз снега</a></li>
+                    <li><a href="#services">Сборка мебели</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="tel:0777575707">0777 57 57 07</a></li>
+                    <li><a href="tel:0505999065">0505 999 065</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Портер Такси. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Плавная прокрутка для навигации
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#contactForm").submit(function(e) {
+            e.preventDefault();
+
+            // Показываем статус загрузки
+            $("#formStatus").text("Отправка заявки...").css("color", "#1E3A8A").show();
+
+            // Собираем данные формы
+            const name = $("#name").val();
+            const phone = $("#phone").val();
+            const service = $("#service").val();
+            const message = $("#message").val();
+
+            // Форматируем сообщение для Telegram
+            const text = `🚚 Новая заявка с сайта!\n
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+🛠️ Услуга: ${service}
+📝 Сообщение: ${message}`;
+
+            // Заменить на свои данные
+            const botToken = "991395711:AAHp9GwPdKwquW76ZmlNjICxQoxs0R1i_tI";
+            const chatId = "629524485";
+
+            // Отправляем запрос к Telegram API
+            $.ajax({
+                url: `https://api.telegram.org/bot${botToken}/sendMessage`,
+                method: "POST",
+                data: {
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: "HTML"
+                },
+                success: function(response) {
+                    // Успешная отправка
+                    $("#formStatus").text("Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами.").css("color", "#10B981").show();
+                    $("#contactForm")[0].reset(); // Очищаем форму
+
+                    // Скрываем сообщение через 5 секунд
+                    setTimeout(function() {
+                        $("#formStatus").hide();
+                    }, 5000);
+                },
+                error: function(error) {
+                    // Ошибка отправки
+                    console.error(error);
+                    $("#formStatus").text("Произошла ошибка при отправке. Пожалуйста, позвоните нам напрямую.").css("color", "red").show();
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
