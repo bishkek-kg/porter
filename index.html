@@ -98,6 +98,13 @@
             font-size: 16px;
         }
 
+        .burger-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
         .btn {
             background-color: var(--accent-color);
             color: var(--white);
@@ -309,24 +316,43 @@
 
         /* Медиа-запросы для адаптивности */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
+            .burger-menu {
+                display: block;
             }
 
             .nav-links {
-                margin-top: 20px;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 flex-direction: column;
                 align-items: center;
             }
 
+            .nav-links.active {
+                display: flex;
+            }
+
             .nav-links li {
-                margin: 10px 0;
+                margin: 15px 0;
             }
 
             .phone-numbers {
+                display: none;
+            }
+
+            .phone-numbers.active {
+                display: flex;
                 margin-top: 20px;
                 align-items: center;
+            }
+
+            .btn {
+                margin-top: 20px;
             }
 
             .hero h1 {
@@ -359,6 +385,7 @@
                 <a href="tel:0777575707" class="phone-link"><i class="fas fa-phone"></i> 0777 57 57 07</a>
                 <a href="tel:0505999065" class="phone-link"><i class="fas fa-phone"></i> 0505 999 065</a>
             </div>
+            <div class="burger-menu">☰</div>
         </nav>
     </div>
 </header>
@@ -589,6 +616,14 @@
 </footer>
 
 <script>
+    // Обработка бургер-меню
+    document.querySelector('.burger-menu').addEventListener('click', function() {
+        const navLinks = document.querySelector('.nav-links');
+        const phoneNumbers = document.querySelector('.phone-numbers');
+        navLinks.classList.toggle('active');
+        phoneNumbers.classList.toggle('active');
+    });
+
     // Плавная прокрутка для навигации
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -596,6 +631,11 @@
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
+            // Закрываем меню при клике на ссылку
+            const navLinks = document.querySelector('.nav-links');
+            const phoneNumbers = document.querySelector('.phone-numbers');
+            navLinks.classList.remove('active');
+            phoneNumbers.classList.remove('active');
         });
     });
 </script>
