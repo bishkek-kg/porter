@@ -139,6 +139,23 @@
             margin: 0 auto;
         }
 
+        .hero-title {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
@@ -355,13 +372,563 @@
                 margin-top: 20px;
             }
 
-            .hero h1 {
-                font-size: 36px;
+            .hero-title {
+                font-size: 28px;
+                text-align: center;
             }
 
             .hero p {
                 font-size: 18px;
             }
+
+            .typing-text {
+                font-size: 28px;
+                white-space: normal;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Анимации */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .benefit-card {
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+            color: var(--primary-color);
+        }
+
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .social-links a {
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Анимация для форм */
+        input, select, textarea {
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Анимация для логотипа */
+        .logo {
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo:hover i {
+            transform: rotate(360deg);
+        }
+
+        /* Новые анимации */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) }
+            20%, 40%, 60%, 80% { transform: translateX(5px) }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.5) }
+            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.8) }
+            100% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.5) }
+        }
+
+        /* Анимированный градиент для кнопок */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--accent-color), #0EA271, var(--accent-color));
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        .btn:hover {
+            animation: pulse 1s infinite;
+        }
+
+        /* Эффект печатающегося текста для заголовков */
+        .typing-text {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 1px;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        /* Эффект свечения для карточек при наведении */
+        .service-card:hover, .benefit-card:hover {
+            animation: glow 2s infinite;
+        }
+
+        /* Эффект встряхивания для важных элементов */
+        .shake-on-hover:hover {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Улучшенные hover-эффекты для навигации */
+        .nav-links a {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* Анимация для иконок в преимуществах */
+        .benefit-icon i {
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon i {
+            animation: rotate 1s ease-in-out;
+            color: var(--primary-color);
+        }
+
+        /* Анимация для карточек услуг */
+        .service-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Анимация для изображений в карточках */
+        .service-image {
+            overflow: hidden;
+        }
+
+        .service-image img {
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        /* Анимация для форм */
+        input, select, textarea {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Анимация для социальных иконок */
+        .social-links a {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Анимация для отзывов */
+        .testimonial-card {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 60px;
+            color: var(--accent-color);
+            opacity: 0.2;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover::before {
+            transform: scale(1.2);
+            opacity: 0.4;
+        }
+
+        /* Анимация для навигации */
+        .nav-links a {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* Анимация для телефонных номеров */
+        .phone-link {
+            transition: all 0.3s ease;
+        }
+
+        .phone-link:hover {
+            transform: scale(1.05);
+            color: var(--accent-color);
+        }
+
+        /* Анимация для заголовков секций */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100%;
+        }
+
+        /* Анимация для телефонных номеров в контактах */
+        .contact-phone-link {
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-phone-link:hover {
+            transform: scale(1.05);
+            color: var(--accent-color) !important;
+        }
+
+        .contact-phone-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-phone-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .contact-phone-link i {
+            transition: all 0.3s ease;
+        }
+
+        .contact-phone-link:hover i {
+            transform: rotate(15deg);
+            color: var(--accent-color);
+        }
+
+        /* Анимация для мессенджеров */
+        .messenger-link {
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin: 5px;
+            font-size: 22px;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        .messenger-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .messenger-link.whatsapp {
+            background-color: rgba(37, 211, 102, 0.1);
+        }
+
+        .messenger-link.telegram {
+            background-color: rgba(0, 136, 204, 0.1);
+        }
+
+        .messenger-link i {
+            transition: all 0.4s ease;
+            margin-right: 12px;
+            font-size: 28px;
+        }
+
+        .messenger-link:hover i {
+            transform: scale(1.3) rotate(10deg);
+        }
+
+        .messenger-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .messenger-link:hover::before {
+            left: 100%;
+        }
+
+        .messenger-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: currentColor;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .messenger-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .messenger-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes pulse-border-telegram {
+            0% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 136, 204, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); }
+        }
+
+        .messenger-link.whatsapp {
+            animation: pulse-border 2s infinite;
+        }
+
+        .messenger-link.telegram {
+            animation: pulse-border-telegram 2s infinite;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -394,9 +961,9 @@
 <section class="hero" id="home">
     <div class="container">
         <div class="hero-content">
-            <h1>Надежное Портер Такси в Кыргызстане</h1>
+            <h1 class="hero-title">Надежное Портер Такси в Кыргызстане</h1>
             <p>Быстрая доставка, грузчики и вывоз мусора по лучшим ценам</p>
-            <a href="#contact" class="btn">Заказать услугу</a>
+            <a href="#contact" class="btn shake-on-hover">Заказать услугу</a>
         </div>
     </div>
 </section>
@@ -449,7 +1016,6 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">Портер Такси</h3>
-<!--                    <p class="service-price">от 700 сом</p>-->
                     <p class="service-description">Быстрая доставка по городу и за его пределы. Перевозка мебели, техники и других грузов.</p>
                     <a href="#contact" class="btn">Заказать</a>
                 </div>
@@ -460,7 +1026,6 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">Грузчики</h3>
-<!--                    <p class="service-price">350-400 сом/час</p>-->
                     <p class="service-description">Подъем на этаж, упаковка, аккуратная работа. Бережное обращение с вашими вещами.</p>
                     <a href="#contact" class="btn">Заказать</a>
                 </div>
@@ -471,7 +1036,6 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">Вывоз мусора</h3>
-<!--                    <p class="service-price">600 сом</p>-->
                     <p class="service-description">Профессиональный вывоз и утилизация строительного мусора и других отходов.</p>
                     <a href="#contact" class="btn">Заказать</a>
                 </div>
@@ -482,7 +1046,6 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">Вывоз швейных отходов</h3>
-<!--                    <p class="service-price">от 600 сом</p>-->
                     <p class="service-description">Профессиональный вывоз и утилизация швейных отходов.</p>
                     <a href="#contact" class="btn">Заказать</a>
                 </div>
@@ -493,7 +1056,6 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">Сборка мебели</h3>
-<!--                    <p class="service-price">от 500 сом</p>-->
                     <p class="service-description">Профессиональная сборка и установка мебели любой сложности.</p>
                     <a href="#contact" class="btn">Заказать</a>
                 </div>
@@ -531,16 +1093,28 @@
             <div style="flex: 1; min-width: 300px;">
                 <h3 style="font-size: 22px; margin-bottom: 20px; color: var(--primary-color);">Наши контакты</h3>
                 <div style="margin-bottom: 20px;">
-                    <p style="font-size: 18px; margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i> 0777 57 57 07</p>
-                    <p style="font-size: 18px; margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i> 0505 999 065</p>
-                    <p style="font-size: 18px; margin-bottom: 10px;"><i class="fas fa-map-marker-alt" style="color: var(--accent-color); margin-right: 10px;"></i> Кыргызстан</p>
+                    <p style="font-size: 18px; margin-bottom: 10px;">
+                        <i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        <a href="tel:0777575707" class="contact-phone-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">0777 57 57 07</a>
+                    </p>
+                    <p style="font-size: 18px; margin-bottom: 10px;">
+                        <i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        <a href="tel:0505999065" class="contact-phone-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">0505 999 065</a>
+                    </p>
+                    <p style="font-size: 18px; margin-bottom: 10px;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        Кыргызстан
+                    </p>
                 </div>
                 <div style="margin-top: 30px;">
-                    <h4 style="margin-bottom: 15px;">Мы в мессенджерах:</h4>
-                    <div style="display: flex; gap: 15px;">
-                        <a onclick="window.open('https://wa.me/996777575707')" href="#" style="color: #25D366; font-size: 24px; background-color: rgba(255,255,255,0.11)"><i class="fab fa-whatsapp"> Написать на Whatsapp</i></a>
-                        <br>
-                        <a onclick="window.open('https://t.me/Pay24_RazakovE')" href="#" style="color: #0088cc; font-size: 24px;"><i class="fab fa-telegram"> Написать на Telegram</i></a>
+                    <h4 style="font-size: 22px; margin-bottom: 20px; color: var(--primary-color);">Мы в мессенджерах:</h4>
+                    <div class="messenger-container">
+                        <a onclick="window.open('https://wa.me/996777575707')" href="#" class="messenger-link whatsapp" style="color: #25D366;">
+                            <i class="fab fa-whatsapp"></i> Написать на Whatsapp
+                        </a>
+                        <a onclick="window.open('https://t.me/Pay24_RazakovE')" href="#" class="messenger-link telegram" style="color: #0088cc;">
+                            <i class="fab fa-telegram"></i> Написать на Telegram
+                        </a>
                     </div>
                 </div>
             </div>
