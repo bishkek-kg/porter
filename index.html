@@ -1266,8 +1266,6 @@
             const phone = $("#phone").val();
             const service = $("#service").val();
             const message = $("#message").val();
-
-            // Форматируем сообщение для Telegram
             const text = `🚚 Новая заявка!\n
 👤 Имя: ${name}
 📞 Телефон: ${phone}
@@ -1275,15 +1273,16 @@
 📝 Сообщение: ${message}`;
 
             // Заменить на свои данные
-            const botToken = "991395711:AAHp9GwPdKwquW76ZmlNjICxQoxs0R1i_tI";
-            const chatId = "629524485";
+            const porter = "991395711:AAHp9GwPdKwquW76ZmlNjICxQoxs0R1i_tI";
+            // const chatId = "629524485";
+            const porterId = "-1002679942394";
 
             // Отправляем запрос к Telegram API
             $.ajax({
-                url: `https://api.telegram.org/bot${botToken}/sendMessage`,
+                url: `https://api.telegram.org/bot${porter}/sendMessage`,
                 method: "POST",
                 data: {
-                    chat_id: chatId,
+                    chat_id: porterId,
                     text: text,
                     parse_mode: "HTML"
                 },
