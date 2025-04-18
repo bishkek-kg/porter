@@ -71,17 +71,47 @@
 
         .nav-links li {
             margin-left: 30px;
+            position: relative;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--dark-gray);
             font-weight: 500;
-            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+            margin: 0 5px;
+            z-index: 1;
         }
 
-        .nav-links a:hover {
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+            z-index: 2;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Убираем эффект ::before, который перекрывает соседние элементы */
+        .nav-links a::before {
+            display: none;
+        }
+
+        /* Добавляем отступ для активного пункта меню */
+        .nav-links a.active {
             color: var(--accent-color);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
         }
 
         .phone-numbers {
@@ -168,8 +198,10 @@
 
         /* Преимущества */
         .benefits {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--white);
+            margin-top: 50px;
+            position: relative;
         }
 
         .section-title {
@@ -211,8 +243,10 @@
 
         /* Услуги */
         .services {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--light-gray);
+            margin-top: 50px;
+            position: relative;
         }
 
         .services-grid {
@@ -256,8 +290,10 @@
 
         /* Отзывы */
         .testimonials {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--white);
+            margin-top: 50px;
+            position: relative;
         }
 
         .testimonials-grid {
@@ -478,21 +514,23 @@
 
         .nav-links a {
             position: relative;
+            padding: 5px 0;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -2px;
             left: 0;
-            width: 0;
+            width: 100%;
             height: 2px;
             background-color: var(--accent-color);
-            transition: width 0.3s ease;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .nav-links a:hover::after {
-            width: 100%;
+            transform: scaleX(1);
         }
 
         .testimonial-card {
@@ -966,6 +1004,12 @@
                 justify-content: center;
             }
         }
+
+        /* Добавляем плавную прокрутку с учетом отступа */
+        html {
+            scroll-padding-top: 100px;
+            scroll-behavior: smooth;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
@@ -987,10 +1031,10 @@
                 <button class="language-btn active" data-lang="ru">RU</button>
                 <button class="language-btn" data-lang="kg">KG</button>
             </div>
-            <a onclick="window.open('https://wa.me/996777575707')" class="btn" data-lang="whatsapp_btn">Написать на Whatsapp</a>
+            <a onclick="window.open('https://wa.me/996705722611')" class="btn" data-lang="whatsapp_btn">Написать на Whatsapp</a>
             <div class="phone-numbers">
-                <a href="tel:0777575707" class="phone-link"><i class="fas fa-phone"></i> 0777 57 57 07</a>
-                <a href="tel:0505999065" class="phone-link"><i class="fas fa-phone"></i> 0505 999 065</a>
+                <a href="tel:0705722611" class="phone-link"><i class="fas fa-phone"></i> 0705 72 26 11</a>
+                <a href="tel:0505722611" class="phone-link"><i class="fas fa-phone"></i> 0505 72 26 11</a>
             </div>
             <div class="burger-menu">☰</div>
         </nav>
@@ -1122,11 +1166,28 @@
                 <p class="testimonial-author">- Бакыт Д.</p>
             </div>
         </div>
+        
+        <!-- Форма для отзывов -->
+        <div class="testimonial-form-container" style="margin-top: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h3 class="section-title" style="font-size: 28px;" data-lang="leave_review">Оставить отзыв</h3>
+            <form id="reviewForm" style="background-color: var(--light-gray); padding: 30px; border-radius: 8px;">
+                <div style="margin-bottom: 20px;">
+                    <label for="reviewName" style="display: block; margin-bottom: 8px; font-weight: 600;" data-lang="form_name">Имя</label>
+                    <input type="text" id="reviewName" name="name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="reviewText" style="display: block; margin-bottom: 8px; font-weight: 600;" data-lang="review_text">Ваш отзыв</label>
+                    <textarea id="reviewText" name="text" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;" data-lang="submit_review">Отправить отзыв</button>
+                <div id="reviewStatus" style="margin-top: 15px; text-align: center; display: none;"></div>
+            </form>
+        </div>
     </div>
 </section>
 
 <!-- Контакты -->
-<section id="contact" style="padding: 80px 0; background-color: var(--white);">
+<section id="contact" style="padding: 80px 0; background-color: var(--white); margin-top: 50px;">
     <div class="container">
         <h2 class="section-title" data-lang="contact_title">Свяжитесь с нами</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
@@ -1135,11 +1196,11 @@
                 <div style="margin-bottom: 20px;">
                     <p style="font-size: 18px; margin-bottom: 10px;">
                         <i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i>
-                        <a href="tel:0777575707" class="contact-phone-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">0777 57 57 07</a>
+                        <a href="tel:0705722611" class="contact-phone-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">0705 72 26 11</a>
                     </p>
                     <p style="font-size: 18px; margin-bottom: 10px;">
                         <i class="fas fa-phone" style="color: var(--accent-color); margin-right: 10px;"></i>
-                        <a href="tel:0505999065" class="contact-phone-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">0505 999 065</a>
+                        <a href="tel:0505722611" class="contact-phone-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600;">0505 72 26 11</a>
                     </p>
                     <p style="font-size: 18px; margin-bottom: 10px;">
                         <i class="fas fa-map-marker-alt" style="color: var(--accent-color); margin-right: 10px;"></i>
@@ -1149,10 +1210,10 @@
                 <div style="margin-top: 30px;">
                     <h4 style="font-size: 22px; margin-bottom: 20px; color: var(--primary-color);" data-lang="messengers">Мы в мессенджерах:</h4>
                     <div class="messenger-container">
-                        <a onclick="window.open('https://wa.me/996777575707')" href="#" class="messenger-link whatsapp" style="color: #25D366;">
+                        <a onclick="window.open('https://wa.me/996705722611')" href="#" class="messenger-link whatsapp" style="color: #25D366;">
                             <i class="fab fa-whatsapp"></i> <span data-lang="whatsapp_btn">Написать на Whatsapp</span>
                         </a>
-                        <a onclick="window.open('https://t.me/Pay24_RazakovE')" href="#" class="messenger-link telegram" style="color: #0088cc;">
+                        <a onclick="window.open('https://t.me/aidarbekovemilbek')" href="#" class="messenger-link telegram" style="color: #0088cc;">
                             <i class="fab fa-telegram"></i> <span data-lang="telegram_btn">Написать на Telegram</span>
                         </a>
                     </div>
@@ -1212,13 +1273,13 @@
             <div class="footer-section">
                 <h3 data-lang="our_contacts">Контакты</h3>
                 <ul class="footer-links">
-                    <li><a href="tel:0777575707">0777 57 57 07</a></li>
-                    <li><a href="tel:0505999065">0505 999 065</a></li>
+                    <li><a href="tel:0705722611">0705 72 26 11</a></li>
+                    <li><a href="tel:0505722611">0505 72 26 11</a></li>
                 </ul>
                 <div class="social-links">
-                    <a onclick="window.open('https://wa.me/996777575707')" href="#"
+                    <a onclick="window.open('https://wa.me/996705722611')" href="#"
                        style="color: #25D366; font-size: 24px;"><i class="fab fa-whatsapp"></i></a>
-                    <a onclick="window.open('https://t.me/Pay24_RazakovE')" href="#"
+                    <a onclick="window.open('https://t.me/aidarbekovemilbek')" href="#"
                        style="color: #0088cc; font-size: 24px;"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
@@ -1242,14 +1303,24 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-            // Закрываем меню при клике на ссылку
-            const navLinks = document.querySelector('.nav-links');
-            const phoneNumbers = document.querySelector('.phone-numbers');
-            navLinks.classList.remove('active');
-            phoneNumbers.classList.remove('active');
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight - 20; // Добавляем небольшой отступ
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Закрываем меню при клике
+                const navLinks = document.querySelector('.nav-links');
+                const phoneNumbers = document.querySelector('.phone-numbers');
+                navLinks.classList.remove('active');
+                phoneNumbers.classList.remove('active');
+            }
         });
     });
 </script>
@@ -1275,7 +1346,8 @@
             // Заменить на свои данные
             const porter = "991395711:AAHp9GwPdKwquW76ZmlNjICxQoxs0R1i_tI";
             // const chatId = "629524485";
-            const porterId = "-1002679942394";
+            const porterId = "629524485";
+            // const porterId = "-1002679942394";
 
             // Отправляем запрос к Telegram API
             $.ajax({
@@ -1372,7 +1444,10 @@
             // Подвал
             "about_us": "О нас",
             "about_text": "Компания \"Портер Такси\" - ваш надежный партнер в грузоперевозках по Кыргызстану. Мы предлагаем лучшие цены и профессиональный сервис.",
-            "copyright": "Все права защищены."
+            "copyright": "Все права защищены.",
+            "leave_review": "Оставить отзыв",
+            "review_text": "Ваш отзыв",
+            "submit_review": "Отправить отзыв"
         },
         kg: {
             // Общие элементы
@@ -1436,7 +1511,10 @@
             // Подвал
             "about_us": "Биз жөнүндө",
             "about_text": "\"Портер Такси\" компаниясы - Кыргызстан боюнча жүк ташууда сиздин ишенимдүү өнөктөш. Биз эң жакшы бааларды жана кесипкөй кызматты сунуштайбыз.",
-            "copyright": "Бардык укуктар корголгон."
+            "copyright": "Бардык укуктар корголгон.",
+            "leave_review": "Пикир калтыруу",
+            "review_text": "Сиздин пикириңиз",
+            "submit_review": "Пикир жөнөтүү"
         }
     };
 
@@ -1481,6 +1559,80 @@
             btn.addEventListener('click', function() {
                 const lang = this.getAttribute('data-lang');
                 changeLang(lang);
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Функция для создания карточки отзыва
+        function createTestimonialCard(name, text) {
+            const card = $(`
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(20px);">
+                    <p class="testimonial-text">"${text}"</p>
+                    <p class="testimonial-author">- ${name}</p>
+                </div>
+            `);
+            
+            // Добавляем анимацию появления
+            setTimeout(() => {
+                card.css({
+                    'opacity': '1',
+                    'transform': 'translateY(0)',
+                    'transition': 'all 0.5s ease'
+                });
+            }, 100);
+            
+            return card;
+        }
+
+        // Обработка формы отзывов
+        $("#reviewForm").submit(function(e) {
+            e.preventDefault();
+
+            // Показываем статус загрузки
+            $("#reviewStatus").text("Отправка отзыва...").css("color", "#1E3A8A").show();
+
+            // Собираем данные формы
+            const name = $("#reviewName").val();
+            const text = $("#reviewText").val();
+            const reviewText = `⭐ Новый отзыв!\n
+👤 Имя: ${name}
+📝 Отзыв: ${text}`;
+
+            // Используем тот же бот и чат
+            const porter = "991395711:AAHp9GwPdKwquW76ZmlNjICxQoxs0R1i_tI";
+            const porterId = "629524485";
+
+            // Отправляем запрос к Telegram API
+            $.ajax({
+                url: `https://api.telegram.org/bot${porter}/sendMessage`,
+                method: "POST",
+                data: {
+                    chat_id: porterId,
+                    text: reviewText,
+                    parse_mode: "HTML"
+                },
+                success: function(response) {
+                    // Создаем и добавляем новую карточку отзыва
+                    const newCard = createTestimonialCard(name, text);
+                    $(".testimonials-grid").prepend(newCard);
+
+                    // Успешная отправка
+                    $("#reviewStatus").text("Спасибо! Ваш отзыв добавлен.").css("color", "#10B981").show();
+                    $("#reviewForm")[0].reset(); // Очищаем форму
+
+                    // Скрываем сообщение через 5 секунд
+                    setTimeout(function() {
+                        $("#reviewStatus").hide();
+                    }, 5000);
+                },
+                error: function(error) {
+                    // Ошибка отправки
+                    console.error(error);
+                    $("#reviewStatus").text("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.").css("color", "red").show();
+                }
             });
         });
     });
